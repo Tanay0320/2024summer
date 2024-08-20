@@ -1,0 +1,55 @@
+library(tidyverse)
+library(rvest)
+
+html <- read_html("https://www.iitk.ac.in/math/faculty")
+class(html)
+
+# extracting all tags with class = head3. The
+# "." indicates class.
+name <- html_elements(html, ".head3")
+name
+
+# From all the head3 class, extracting all link tags
+name <- html_elements(name, "a")
+name
+# Extracting the text associated with the links
+name <- html_text(name)
+name
+## A faster way
+name <- html_elements(html, ".head3 a")
+name <- html_text(name)
+
+class(name)
+
+name<-html %>% html_elements(html,".head a") %>% html_text()
+
+library(tidyverse)
+library(rvest)
+
+html<-read_html("https://editorial.rottentomatoes.com/guide/best-netflix-movies-to-watch-right-now/")
+name <- html %>% html_elements(".article_movie_title a") %>% html_text()
+name
+
+rank<-html %>%
+  html_elements(".countdown-index-resposive")%>%
+  html_text()
+
+rank
+
+rank<-substring(rank,first=2)
+rank
+
+year<-html %>%
+  html_elements(".countdown-index-resposive")%>%
+  html_text()
+
+dum<- one%piece%red
+scorre-sapply(extract,c)%>% as.numeric()
+
+sappply(dir,extract_dir(a))
+extra_dir<-function(a){
+  temp<-
+}
+
+  
+}
