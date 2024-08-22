@@ -1,0 +1,34 @@
+##new worksheet
+
+library(tidyverse)
+library(rvest)
+
+html<-read_html("https://editorial.rottentomatoes.com/guide/best-netflix-movies-to-watch-right-now/")
+#html_attr<-value embedded in that attribute
+
+website<-html %>%
+  html_elements(".article_movie_title a") %>%
+  html_attr("href")
+
+website
+
+num_movies<-length(website)
+critrevs<-numeric(length=length(website))
+tomato<-numeric(length=length(website))
+popcorn<-numeric(length=length(website))
+audrevs<-numeric(length=length(website))
+
+for( i in 1:100){
+  #is.na(slot)
+  html_mov<-read_html(website[i])
+  critrevs[i]<-html_mov %>% html_elements("rt-link[slot=criticsReviews]") %>% html_text()
+  audrevs[i]<-html_mov %>% html_elements("rt-link[slot=audienceReviews]")%>% html_text()
+}
+
+critrevs
+#as,numeric char to number if the cgharacter is anumber
+#temp[!is.na(temp)
+# data<-data.frame(revs,audrevs,tomato,popcorn)
+
+#rm(list=ls())
+  
