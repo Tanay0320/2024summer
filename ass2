@@ -17,3 +17,22 @@ change_brightness <- function(img, bright = .2)
   changed_img <- as.cimg(im.changed) # make sure to return imager image object
   return(changed_img)
 }
+
+MatNorm <- function(A, type)
+{
+  value <- 0
+  if(type =="frob")
+  { 
+    B<-matrix(0,nrow=dim(A)[1],ncol=dim(A)[2])
+    B<-A*A
+    value <- sum(B)
+  }
+  else if(type == "max")
+  {
+    value <- which.max(A)
+  }else{
+    stop("Invalid norm type")
+  }
+  
+  return(value)
+}
