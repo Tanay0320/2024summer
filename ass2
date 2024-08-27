@@ -1,0 +1,19 @@
+
+library(imager)
+
+change_brightness <- function(img, bright = .2)
+{
+  img.mat<-as.array(img)
+  rows<-dim(img.mat)[1]
+  cols<-dim(img.mat)[2]
+  im.changed<-array(0,dim=c(rows,cols,3))
+  for(i in 1:rows){
+    for(j in 1:cols){
+      im.changed[i,j,1]<-img.mat[i,j,,1]+bright
+      im.changed[i,j,2]<-img.mat[i,j,,2]+bright
+      im.changed[i,j,3]<-img.mat[i,j,,3]+bright
+    }
+  }
+  changed_img <- as.cimg(im.changed) # make sure to return imager image object
+  return(changed_img)
+}
